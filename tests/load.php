@@ -1,6 +1,6 @@
 <?php
 
-use ClassLoad\Loader;
+use ClassLoad\Oi\Loader;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 

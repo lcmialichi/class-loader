@@ -2,7 +2,7 @@
     "name": "lmcmi/class-load",
     "autoload": {
         "psr-4": {
-            "ClassLoad\\": "src/"
+            "ClassLoad\\Oi\\": "src/"
         }
     },
     "authors": [

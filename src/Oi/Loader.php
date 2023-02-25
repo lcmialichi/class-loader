@@ -1,8 +1,8 @@
 <?php
 
-namespace ClassLoad;
+namespace ClassLoad\Oi;
 
-use Reflection;
+use Reflection; 
 use ReflectionClass;
 use ReflectionException;
 use RuntimeException;
@@ -47,7 +47,7 @@ class Loader
     public function appRoot()
     {
         $appRoot =  $this->getConfig("app-root");
-        if(!$appRoot) {
+        if (!$appRoot) {
             throw new RuntimeException("app-root not defined in config");
         }
         if (substr($appRoot, -strlen("/")) !== "/") {
@@ -96,9 +96,16 @@ class Loader
     public function getNamespaceClass()
     {
         $psr4 = $this->psr4LoadedClasses();
-        $realPath = explode("\\", $this->namespace());
-        $root = array_shift($realPath);
-        return $realPath = $this->appRoot() . "\\" . $psr4[$root . "\\"]  . implode("/", $realPath);
+        foreach ($psr4 as $key => $value) {
+            if (strpos($key, $this->namespace()) !== false) {
+                $realPath = str_replace(rtrim($key, "\\"), $value, $this->namespace());
+            }
+        };
+        if (!isset($realPath)) {
+            throw new RuntimeException("Namespace not found in composer.json");
+        }
+
+        return $realPath = $this->appRoot() . "\\" .$realPath;
     }
 
     public function recursive()
