@@ -1,0 +1,15 @@
+{
+    "name": "lmcmi/class-load",
+    "autoload": {
+        "psr-4": {
+            "Lmcmi\\ClassLoad\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas mialichi",
+            "email": "lmcmialichi@gmail.com"
+        }
+    ],
+    "require": {}
+}
